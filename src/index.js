@@ -1,8 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// require("dotenv").config({ path: __dirname + '/.env' });
-require("dotenv").config();
+require("dotenv").config({ path: __dirname + '/.env' });
+// require("dotenv").config();
 
 const moviesRouter = require('./routes/movies');
 
@@ -25,6 +25,6 @@ const server = app.listen(port, () => {
     connectDB();
 });
 
-app.use("/movies",moviesRouter);
+app.use("/movies", moviesRouter);
 
-module.exports = {app, server};
+module.exports = { app, server };

@@ -7,8 +7,13 @@ const getMovies = async (req, res) => {
 
 const saveMovie = async (req, res) => {
     const movie = req.body;
-    const savedMovie = await MovieService.saveMovie(movie);
-    res.status(201).json(savedMovie);
+
+    try {
+        const savedMovie = await MovieService.saveMovie(movie);
+        res.status(201).json(savedMovie);
+    } catch (error) {
+        res.status(500).json({message:"Internal Error 500"});
+    }
 };
 
 const updateMovie = async (req, res) => {
@@ -20,7 +25,7 @@ const updateMovie = async (req, res) => {
 };
 
 const deleteMovie = async (req, res) => {
-    const {id} = req.params;
+    const { id } = req.params;
     await MovieService.deleteMovie(id);
     res.status(204).send();
 };
